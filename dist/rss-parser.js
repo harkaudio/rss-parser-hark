@@ -362,6 +362,11 @@ var Parser = function () {
       var feed = { items: [] };
       var feedFields = fields.feed.concat(this.options.customFields.feed);
       var itemFields = fields.item.concat(this.options.customFields.item);
+      if(channel['atom:link']){
+        console.log('ALL href array present', channel['atom:link'])
+      }else{
+        console.log('All href array not present')
+      }
       if (channel['atom:link'] && channel['atom:link'][0] && channel['atom:link'][0].$) {
         feed.feedUrl = channel['atom:link'][0].$.href;
       }
