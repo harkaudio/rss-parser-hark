@@ -262,7 +262,9 @@ var Parser = function () {
         });
         req.on('error', reject);
         timeout = setTimeout(function () {
-          return reject(new Error("Request timed out after " + _this2.options.timeout + "ms"));
+		let err = new Error("Request timed out after " + _this2.options.timeout + "ms");
+        	req.destroy(err);
+        	reject(err);
         }, _this2.options.timeout);
       }).then(function (data) {
         clearTimeout(timeout);
